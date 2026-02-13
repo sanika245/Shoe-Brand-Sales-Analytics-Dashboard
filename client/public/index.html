@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shoe Brand Sales Analytics Dashboard</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body { background:#f5f6fa; }
+    .card { border-radius:12px; }
+    .summary-card {
+      padding:20px;
+      border-radius:12px;
+      color:white;
+      font-weight:500;
+    }
+    .bg1{background:#2e86de;}
+    .bg2{background:#20bf6b;}
+    .bg3{background:#8854d0;}
+    .bg4{background:#eb3b5a;}
+  </style>
+</head>
+<body>
+
+<div class="container mt-4">
+
+<h3 class="mb-4 text-center">Shoe Brand Sales Analytics Dashboard</h3>
+
+<!-- ROW 1 : DATE FILTER -->
+<div class="card p-3 mb-4">
+  <div class="row">
+    <div class="col-md-4">
+      <label>Start Date</label>
+      <input type="date" id="startDate" class="form-control">
+    </div>
+    <div class="col-md-4">
+      <label>End Date</label>
+      <input type="date" id="endDate" class="form-control">
+    </div>
+    <div class="col-md-4 d-flex align-items-end">
+      <button class="btn btn-primary w-100" onclick="loadDashboard()">Apply</button>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 2 : SUMMARY TILES -->
+<div class="row mb-4">
+  <div class="col-md-3">
+    <div class="summary-card bg1">
+      Total Sales
+      <h4 id="tileSales">0</h4>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="summary-card bg2">
+      Total Ad Cost
+      <h4 id="tileAd">0</h4>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="summary-card bg3">
+      Total Impressions
+      <h4 id="tileImp">0</h4>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="summary-card bg4">
+      Total Clicks
+      <h4 id="tileClick">0</h4>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 3 : CHART -->
+<div class="card p-4 mb-4">
+  <h5>Trend Analysis</h5>
+
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label>Select Shoe</label>
+      <select id="shoeSelect" class="form-select"></select>
+    </div>
+
+    <div class="col-md-4">
+      <label>Metric 1</label>
+      <select id="metric1" class="form-select">
+        <option value="sales">Sales</option>
+        <option value="advertisingCost">Advertising Cost</option>
+        <option value="impressions">Impressions</option>
+        <option value="clicks">Clicks</option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label>Metric 2</label>
+      <select id="metric2" class="form-select">
+        <option value="clicks">Clicks</option>
+        <option value="sales">Sales</option>
+        <option value="advertisingCost">Advertising Cost</option>
+        <option value="impressions">Impressions</option>
+      </select>
+    </div>
+  </div>
+
+  <canvas id="chart"></canvas>
+</div>
+
+<!-- ROW 4 : TABLE -->
+<div class="card p-4">
+  <h5>Brand Summary</h5>
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Shoe Name</th>
+        <th>Sales</th>
+        <th>Advertising Cost</th>
+        <th>Impressions</th>
+        <th>Clicks</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+    <tfoot class="table-secondary">
+      <tr>
+        <th>Grand Total</th>
+        <th id="gSales"></th>
+        <th id="gAd"></th>
+        <th id="gImp"></th>
+        <th id="gClick"></th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
